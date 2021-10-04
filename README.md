@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is meant to get designers more familiar with how VHS (and to a lesser extent, React) works in development. You can use this as a place to just try making some VHS components appear on screen. It is fun! I promise. If you get really into it, you can try making prototypes, but that will require some moderate familiarity with React.
 
-## Available Scripts
+# Getting Started
 
-In the project directory, you can run:
+Go to `App.js` and either delete everything inbetween the `<Layout>` tags or just start fiddling with what is there.
 
-### `yarn start`
+## Using Components
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Importing Components
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+While VHS is installed in this project, to use components from it on the page you need to import them individually. To do that, simply add the component you want to use to the import declaration at the top of the code. This starter has a few components already imported.
 
-### `yarn test`
+Let’s say you want to add an `IconButton`, so you add this code.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+import { Text, Button, Icon, Input, Checkbox } from '@wistia/vhs';
+...
+<IconButton .../>
+```
 
-### `yarn build`
+😠
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The result will be an error because `IconButton` has not been imported. Luckily, importing things is simple! All you have to do is add the name to the other ones in between the curly brackets.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+import { Text, Button, Icon, IconButton Input, Checkbox } from '@wistia/vhs';
+...
+<IconButton .../>
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+😸
 
-### `yarn eject`
+### Passing Props to Components
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+This is where things get fun. Every component has a set of “props” that change the properties of the component. This can be the color, the label text, or icon that appears. Every component has a prop table that you can view on Storybook to give you a sense of what is possible.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+For this example, we’ll add a headline to the page. We know we are going to want to start with the Text component, so we write:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+...
+<Text>This is a headline</Text>
+...
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+And get this result:
+![headline not working](https://p-qKFzNW.b1.n0.cdn.getcloudapp.com/items/6quYjpom/a0c02319-a7ea-48aa-8a90-1b0a3bd0331d.png?v=5d1c2eade0147342a9edb675d733968b)
+...not very headliney. That is because we need to pass in the right `variant` prop to make it big and bold. Here’s what that looks like:
 
-## Learn More
+```
+...
+<Text variant="headline1">This is a headline</Text>
+...
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+And now this is what we see:
+![headline working](https://p-qKFzNW.b1.n0.cdn.getcloudapp.com/items/6quYjp12/5ba4e394-12f8-47de-b254-523bdee554cc.png?v=6441450d5b2262957bfe50165d4e5118)
+Ahhh. Much better.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Props are the main way we customize components to look how we want. They can also make the component more functional. For example, buttons use the `onClick` prop to know what should happen when they are clicked. Making functional prototypes is a bit beyond the intention of this project, but feel free to push to bounds and explore!
 
-### Code Splitting
+## Styling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 💅🏾 styled-components
 
-### Analyzing the Bundle Size
+The styling engine we use for VHS and Wistia in general is called styled-components. It might look a little weird at first, but if you understand CSS it won’t be a problem.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+I’d highly recommend checking out the [styled-components documentation](https://styled-components.com/docs/basics), it is very good and very readable.
 
-### Making a Progressive Web App
+If you wanted to make a 48x48px div with a red background. Using typical HTML & CSS, that would look like this:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+// CSS
+.redSquare {
+    background: red;
+    height: 48px;
+    width: 48px;
+}
 
-### Advanced Configuration
+// HTML
+<div class="redSquare">
+    This is a red square.
+</div>
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To create the same thing using styled-components, you’d write this:
 
-### Deployment
+```
+// styled-component
+const RedSquare = styled.div`
+    background: red;
+    height: 48px;
+    width: 48px;
+`;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+// React
+<RedSquare>
+    This is a red square.
+</RedSquare>
+```
 
-### `yarn build` fails to minify
+**The one thing to keep in mind is that you should write you styled-components code _above_ the `App` function. (So above where it says ` function App() ``{ `**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### `style` prop
+
+You can also add styles into the `style` prop in any component. This is akin to inline styling with HTML, but with a slightly different syntax. For more info, check out the [W3 article.](https://www.w3schools.com/react/react_css.asp)
