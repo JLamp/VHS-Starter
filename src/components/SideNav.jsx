@@ -8,15 +8,15 @@ const SideNavContainer = styled.div`
   box-shadow: ${({ theme }) => theme.shadow.elevation2};
   display: flex;
   flex-direction: column;
-  max-width: 288px;
+  width: 288px;
   background: white;
   margin-left: 16px;
   height: 80vh;
+  flex-shrink: 0;
   & :nth-child(${(props) => props.active + 2}) {
     background: ${({ theme }) => theme.color.brandBlue100};
     color: ${({ theme }) => theme.color.brandBlue500};
   }
-  grid-area: "sidebar";
 `;
 
 const BackButton = styled.div`

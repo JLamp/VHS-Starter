@@ -11,6 +11,7 @@ const MainNavContainer = styled.div`
   height: 80px;
   width: 100%;
   padding: 0 16px 0 8px;
+  margin-bottom: 24px;
   box-shadow: ${({ theme }) => theme.shadow.elevation2};
   grid-area: header;
 `;

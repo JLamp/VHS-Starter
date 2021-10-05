@@ -4,22 +4,33 @@ import { SideNav } from "./SideNav";
 import styled from "styled-components";
 
 const PageContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
   background: ${({ theme }) => theme.color.grey100};
-  display: grid;
-  grid-template-areas: "header header" "sidebar content";
-  grid-template-columns: 320px;
-  grid-template-rows: 80px;
-  grid-row-gap: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+`;
+
+const MainContentArea = styled.div`
+  display: flex;
+  width: 100%;
 `;
 
 const ContentContainer = styled.div`
   width: 100%;
-  max-width: 960px;
+  display: flex;
   margin: 0 24px;
   justify-self: center;
   padding-top: 24px;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
 `;
 
 export function Layout({ children }) {
@@ -27,8 +38,12 @@ export function Layout({ children }) {
     <VHSProvider>
       <PageContainer>
         <MainNav />
-        <SideNav />
-        <ContentContainer>{children}</ContentContainer>
+        <MainContentArea>
+          <SideNav />
+          <ContentContainer>
+            <Content>{children}</Content>
+          </ContentContainer>
+        </MainContentArea>
       </PageContainer>
     </VHSProvider>
   );
