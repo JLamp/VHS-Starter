@@ -1,5 +1,15 @@
 export const SideNavItems = {
   backTo: "Project",
-  title: "Home",
-  items: ["All Content", "Channels", "Projects", "Media", "", "Soapbox"],
+  title: "Media",
+  items: [
+    "Overview",
+    "Customize",
+    "Stats",
+    "",
+    "Create an A/B Test",
+    "Replace Media",
+    "Download",
+    "Set Project Defaults",
+    "Delete",
+  ],
 };

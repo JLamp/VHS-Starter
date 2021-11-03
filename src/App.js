@@ -2,7 +2,6 @@ import { Text, Button, Icon, Input, Checkbox } from '@wistia/vhs';
 import styled from 'styled-components';
 import { Layout } from './components/Layout';
 import { Player } from './components/Player';
-import { Search } from './components/Search';
 
 const Header = styled.div`
 display: flex;
@@ -48,10 +47,24 @@ function App() {
       {/* Header */}
       <Header>
         <TitleAndButton>
-          <Text variant="headline1">All Media</Text>
+          <Text variant="headline1">Lenny Delivers a Video</Text>
+          <Button icon={<Icon type="embed" size="md"/>}>Embed and Share</Button>
         </TitleAndButton>
-        <Search />
+        <Text variant="body2">Our trusty companion Lenny is sent on an epic quest to deliver a video. He tries his best.</Text>
       </Header>
+      {/* Player */}
+      <Player url="https://lamp.wistia.com/medias/ueu90j21tb" />
+      {/* Comments */}
+      <CommentsContainer>
+        <Text variant="subtitle2" style={{width: 180}}>Lenny Lavigne</Text>
+        <CommentBoxContainer>
+          <Input type="multiline"></Input>
+          <CheckboxAndButtonContainer>
+            <StyledCheckbox label="Link comment to current time in video" />
+            <Button variant="secondary">Post comment</Button>
+          </CheckboxAndButtonContainer>
+        </CommentBoxContainer>
+      </CommentsContainer>
     </Layout>
     );
   }

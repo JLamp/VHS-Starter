@@ -7,7 +7,7 @@ const PageContainer = styled.div`
   background: ${({ theme }) => theme.color.grey100};
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
 `;
 
 const MainContentArea = styled.div`
@@ -39,7 +39,7 @@ export function Layout({ children }) {
       <PageContainer>
         <MainNav />
         <MainContentArea>
-          <SideNav active={4} />
+          <SideNav />
           <ContentContainer>
             <Content>{children}</Content>
           </ContentContainer>
